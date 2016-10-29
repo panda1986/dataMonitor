@@ -1,0 +1,157 @@
+.monitor_list{
+	margin:5px 0 70px 0;
+}
+.width60{
+	width:60px !important;
+}
+.width120{
+	width:120px !important;
+}
+.width150{
+	width:150px !important;
+}
+.width180{
+	width:180px !important;
+}
+.width220{
+	width:220px !important;
+}
+.width240{
+	width:240px !important;
+}
+.width340{
+	width:340px !important;
+}
+.width460{
+	width:460px !important;
+}
+
+.monitor_login_form .input-group {
+	position: relative;
+	margin: 10px 0;
+}
+
+.monitor_login_form .input-group .input-group-addon {
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	z-index: 3;
+	background-color: #fff;
+	padding: 8px 10px;
+	border: none;
+}
+
+.monitor_login_form .input-group input {
+	padding-left: 30px;
+	border-radius: 2px;
+}
+
+.monitor_login_form .input-group button {
+	width: 100%;
+	background: #ff8140;
+	border: 1px solid #f77c3d;
+	color: #fff;
+	border-radius: 2px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.25);
+}
+
+.monitor_login_form .input-group button:hover,
+.monitor_login_form .input-group button:active {
+	background: #f7671d;
+	border: 1px solid #f06923;
+	color: #fff;
+}
+
+.kl-modal-window .modal-dialog {
+	 width: 380px;
+ }
+
+.kl-lg-modal-window .modal-dialog {
+	width: 500px;
+}
+
+
+/* Mini layout previews
+-------------------------------------------------- */
+.mini-sm-layout {
+	height: 300px;
+}
+
+.mini-xs-layout {
+	height: 160px;
+}
+
+.mini-layout,
+.mini-layout .mini-layout-body,
+.mini-layout.fluid .mini-layout-sidebar {
+	height: 400px;
+}
+.mini-layout {
+	margin-bottom: 20px;
+	padding: 9px;
+}
+.mini-sm-layout {
+	margin-bottom: 5px;
+	padding: 5px;
+}
+.mini-layout .mini-sm-layout div {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.mini-layout .mini-sm-layout .mini-layout-body {
+	background-color: #dceaf4;
+	margin: 0 auto;
+	width: 70%;
+}
+.mini-layout.fluid .mini-layout-sidebar,
+.mini-layout.fluid .mini-layout-header,
+.mini-layout.fluid .mini-layout-body {
+	float: left;
+}
+.mini-layout.fluid .mini-layout-sidebar {
+	background-color: #bbd8e9;
+	width: 20%;
+}
+.mini-layout.fluid .mini-layout-body {
+	width: 77.5%;
+	margin-left: 2.5%;
+}
+
+/*debugger login button
+----------------------------------------------------*/
+.debugger_login_form .input-group {
+	position: relative;
+	margin: 10px 0;
+}
+
+.debugger_login_form .input-group .input-group-addon {
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	z-index: 3;
+	background-color: #fff;
+	padding: 8px 10px;
+	border: none;
+}
+
+.debugger_login_form .input-group input {
+	padding-left: 30px;
+	border-radius: 2px;
+}
+
+.debugger_login_form .input-group button {
+	width: 100%;
+	background: #ff8140;
+	border: 1px solid #f77c3d;
+	color: #fff;
+	border-radius: 2px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.25);
+}
+
+.debugger_login_form .input-group button:hover,
+.debugger_login_form .input-group button:active {
+	background: #f7671d;
+	border: 1px solid #f06923;
+	color: #fff;
+}

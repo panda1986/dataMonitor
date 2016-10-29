@@ -1,0 +1,153 @@
+<div>
+    <p><strong>{{user()}}</strong>,正在查看设备管理页面</p>
+</div>
+<div class="pull-right">
+    <span>共 <strong><i>{{devices.length}}</i></strong> 个设备入账</span>
+    <button type="button" class="btn btn-primary" ng-click="newDevice()">
+        ＋ 新建设备
+    </button>
+</div>
+<div class="monitor_list">
+    <table ng-table="tableParams" class="table table-condensed table-bordered table-hover table-striped debugger_table">
+        <tr ng-repeat="device in $data">
+            <td data-title="'ID'" class="input-medium AutoNewline"><a href="javascript:void(0)">{{device.id}}</a></td>
+            <td data-title="'设备名称'" filter="{name: 'text'}" class="width180 AutoNewline">{{device.name}}</td>
+            <td data-title="'设备编号'" filter="{uid: 'text'}" class="width180 AutoNewline">{{device.uid}}</td>
+            <td data-title="'规格型号'" filter="{specification: 'text'}" class="width180 AutoNewline">{{device.specification}}</td>
+            <td data-title="'测量精度'"  class="width120 AutoNewline">{{device.precision}}</td>
+            <td data-title="'量程最小值'"  class="width120 AutoNewline">{{device.min}} {{device.unit}}</td>
+            <td data-title="'量程最大值'"  class="width120 AutoNewline">{{device.max}} {{device.unit}}</td>
+            <td data-title="'操作'">
+                <button class="btn btn-info btn-xs" ng-click="modifyDevice(device)">编辑</button>
+                <button class="btn btn-danger btn-xs" ng-click="deleteDevice(device)">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- create device -->
+<script type="text/ng-template" id="CCreateDevice.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">新建设备</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <form class="modal-body">
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>设备名称：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.name" placeholder="粉尘分析仪">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>设备编号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.uid" placeholder="42000AT0201-粉尘">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>规格型号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.specification" placeholder="FW320">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>测量精度：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.precision" placeholder="1%F.S">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>测量单位：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.unit" placeholder="mg/Nm3">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>量程最小值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newDevice.min" placeholder="0">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>量程最大值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newDevice.max" placeholder="1000">
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="confirm()" ng-disabled="!valid()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+<!-- modify device -->
+<script type="text/ng-template" id="CModifyDevice.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">编辑用户【{{newDevice.id}}:{{newDevice.name}}】</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>设备名称：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.name">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>设备编号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.uid">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>规格型号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.specification">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>测量精度：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.precision">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>测量单位：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newDevice.unit">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>量程最小值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newDevice.min">
+        </div>
+        <div class="input-group width340">
+            <span class="input-group-addon">
+                <span>量程最大值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newDevice.max">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="confirm()" ng-disabled="!valid()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+<!-- delete device -->
+<script type="text/ng-template" id="CConfirm.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">确认提示</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <h4 class="text-center">{{context}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" ng-click="confirm()">确定</button>
+        <button class="btn btn-primary" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>

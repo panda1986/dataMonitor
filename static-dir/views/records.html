@@ -1,0 +1,128 @@
+<div>
+    <p><strong>{{user()}}</strong>,正在查看巡检记录页面</p>
+</div>
+<div class="pull-right">
+    <span>共 <strong><i>{{records.length}}</i></strong> 条巡检记录</span>
+    <button type="button" class="btn btn-primary" ng-click="newRecord()">
+        ＋ 添加记录
+    </button>
+</div>
+<div class="monitor_list">
+    <table ng-table="tableParams" class="table table-condensed table-bordered table-hover table-striped debugger_table">
+        <tr ng-repeat="record in $data">
+            <td data-title="'ID'" class="input-medium AutoNewline">{{record.id}}</td>
+            <td data-title="'设备编号'" class="width150 AutoNewline">{{record.uid}}</td>
+            <td data-title="'测量值'" class="width120 AutoNewline">{{record.value}}</td>
+            <td data-title="'检查人'" class="width150 AutoNewline">{{record.watchers| filter_record_watchers}}</td>
+            <td data-title="'记录时间'" class="width150 AutoNewline">{{record.time| filter_record_time}}</td>
+            <td data-title="'记录描述'" class="width240 AutoNewline">{{record.desc}}</td>
+            <td data-title="'操作'">
+                <button class="btn btn-info btn-xs" ng-click="modifyRecord(record)">编辑</button>
+                <button class="btn btn-danger btn-xs" ng-click="deleteRecord(record)">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- create record -->
+<script type="text/ng-template" id="CCreateRecord.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">新建巡检记录</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <form class="modal-body">
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>设备编号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newRecord.uid" placeholder="A1HSA10CQ103">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>测量值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newRecord.value" placeholder="10">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>测量时间：</span>
+            </span>
+            <input type="datetime-local" class="form-control" ng-model="create_time">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>检查人：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="watchers" placeholder="小明,小李,小张">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>描述：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newRecord.desc" placeholder="设备运行状况及其他">
+        </div>
+    </form>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="confirm()" ng-disabled="!valid()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+<!-- modify record -->
+<script type="text/ng-template" id="CModifyRecord.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">编辑巡检记录【{{newRecord.id}}】</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>设备编号：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newRecord.uid">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>测量值：</span>
+            </span>
+            <input type="number" class="form-control" ng-model="newRecord.value">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>测量时间：</span>
+            </span>
+            <input type="datetime-local" class="form-control" ng-model="create_time">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>检查人：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="watchers">
+        </div>
+        <div class="input-group width460">
+            <span class="input-group-addon">
+                <span>描述：</span>
+            </span>
+            <input type="text" class="form-control" ng-model="newRecord.desc">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="confirm()" ng-disabled="!valid()">确定</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>
+
+<!-- delete record -->
+<script type="text/ng-template" id="CConfirm.html">
+    <div class="modal-header clearfix">
+        <h3 class="modal-title pull-left">确认提示</h3>
+        <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <h4 class="text-center">{{context}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" ng-click="confirm()">确定</button>
+        <button class="btn btn-primary" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>
