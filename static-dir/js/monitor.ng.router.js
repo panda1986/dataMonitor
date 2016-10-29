@@ -146,8 +146,16 @@ monitorApp.controller("CMain", ["$scope", "$location", "$cookies", "$interval", 
     }]);
 
 // controller: CHomepage, for the view homepage.html.
-monitorApp.controller('CAnalysis', ['$scope', "$db_nav", "MDBApi", "$db_utility",function($scope, $db_nav, MDBApi, $db_utility){
+monitorApp.controller('CAnalysis', ['$scope', "$location", "$cookies", "$db_nav", "MDBApi", "$db_utility",
+    function($scope, $location, $cookies, $db_nav, MDBApi, $db_utility){
     $db_nav.in_analysis();
+
+    // requires user to login first.
+    if (!$cookies.get("kl_monitor_user")) {
+        $db_nav.go_login($location);
+        return;
+    }
+
     $scope.search = {
         uid: ""
     };
@@ -251,9 +259,16 @@ monitorApp.controller('CAnalysis', ['$scope', "$db_nav", "MDBApi", "$db_utility"
 }]);
 
 //controller:CUser,for the view user.html
-monitorApp.controller('CUser',['$scope', "$db_nav", "userData", "MDBApi", "NgTableParams", "$uibModal", "$db_utility",
-    function($scope, $db_nav, userData, MDBApi, NgTableParams, $uibModal, $db_utility){
+monitorApp.controller('CUser',['$scope', "$location", "$cookies", "$db_nav", "userData", "MDBApi", "NgTableParams", "$uibModal", "$db_utility",
+    function($scope, $location, $cookies, $db_nav, userData, MDBApi, NgTableParams, $uibModal, $db_utility){
     $db_nav.in_user();
+
+    // requires user to login first.
+    if (!$cookies.get("kl_monitor_user")) {
+        $db_nav.go_login($location);
+        return;
+    }
+
     var load = function () {
         MDBApi.users_load(function (data) {
             $scope.users = data.data;
@@ -366,9 +381,15 @@ monitorApp.controller('CUser',['$scope', "$db_nav", "userData", "MDBApi", "NgTab
 }]);
 
 //controller:CDevice,for the view devices.html
-monitorApp.controller('CDevices',['$scope', "$db_nav", "userData", "MDBApi", "NgTableParams", "$uibModal", "$db_utility",
-    function($scope, $db_nav, userData, MDBApi, NgTableParams, $uibModal, $db_utility){
+monitorApp.controller('CDevices',['$scope', "$location", "$cookies", "$db_nav", "userData", "MDBApi", "NgTableParams", "$uibModal", "$db_utility",
+    function($scope, $location, $cookies, $db_nav, userData, MDBApi, NgTableParams, $uibModal, $db_utility){
         $db_nav.in_devices();
+
+        // requires user to login first.
+        if (!$cookies.get("kl_monitor_user")) {
+            $db_nav.go_login($location);
+            return;
+        }
         var load = function () {
             MDBApi.devices_load(function (data) {
                 $scope.devices = data.data;
