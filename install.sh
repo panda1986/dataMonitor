@@ -66,8 +66,8 @@ function install(){
     fi
 
     install_root=$TARGET_INSTALL
-    install_bin=$install_root/bms.live.data
-    conf_file="$install_root/liveData.conf"
+    install_bin=$install_root/kaloon.monitor
+    conf_file="$install_root/monitor.conf"
     sys_log_file="$install_root/sys.log"
     # backup installed apiserver.
     if [[ -d $install_root ]]; then
