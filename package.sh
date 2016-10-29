@@ -51,7 +51,6 @@ function package_kl_moitor(){
     (
         sudo rm -rf ${package_dirname} && mkdir -p ${package_dirname} &&
         cp ${work_dir}/objs/kaloon.monitor ${package_dirname} &&
-        mkdir -p ${package_dirname}/static-dir &&
         cp -af ${work_dir}/static-dir ${package_dirname} &&
         cp ${work_dir}/install.sh ${package_dirname}/install.sh &&
         cp ${work_dir}/conf/monitor.conf ${package_dirname}/ &&

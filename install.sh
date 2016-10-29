@@ -105,8 +105,7 @@ function install(){
         sudo mkdir -p $install_root &&
         sudo cp -f kaloon.monitor $install_root &&
         sudo cp -f monitor.conf $install_root &&
-        sudo mkdir -p $install_root/static-dir &&
-        sudo cp -af static-dir $install_root/static-dir/ &&
+        sudo cp -af static-dir $install_root/ &&
         sudo mkdir -p $install_root/etc/init.d &&
         sudo cp -rf etc/init.d/kl_monitor $install_root/etc/init.d
     )
