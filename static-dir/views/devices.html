@@ -84,7 +84,7 @@
 <!-- modify device -->
 <script type="text/ng-template" id="CModifyDevice.html">
     <div class="modal-header clearfix">
-        <h3 class="modal-title pull-left">编辑用户【{{newDevice.id}}:{{newDevice.name}}】</h3>
+        <h3 class="modal-title pull-left">编辑设备【{{newDevice.id}}:{{newDevice.name}}】</h3>
         <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
     </div>
     <div class="modal-body">
@@ -98,7 +98,7 @@
             <span class="input-group-addon">
                 <span>设备编号：</span>
             </span>
-            <input type="text" class="form-control" ng-model="newDevice.uid">
+            <input type="text" class="form-control" ng-model="newDevice.uid" disabled="disabled">
         </div>
         <div class="input-group width340">
             <span class="input-group-addon">
