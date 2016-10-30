@@ -33,8 +33,7 @@ func (v *User) Decode(r io.Reader) (err error) {
 
 type UserAction struct {
     Action string `json:"action"`
-    Id int `json:"id"`
-    Passwd string `json:"passwd"`
+    User *User `json:"user"`
 }
 
 func (v *UserAction) Decode(r io.Reader) (err error) {

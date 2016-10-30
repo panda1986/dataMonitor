@@ -16,7 +16,7 @@ import (
 )
 
 const (
-    version string = "1.0.0"
+    version string = "1.0.1"
 
     UpdateAction = "update"
     DeleteAction = "delete"
@@ -209,7 +209,7 @@ func run() int {
                     return
                 }
                 if ua.Action == UpdateAction {
-                    if err := mt.users.updatePasswd(ua.Id, ua.Passwd); err != nil {
+                    if err := mt.users.updatePasswd(ua.User.Id, ua.User.Passwd); err != nil {
                         ol.E(nil, "update user passwd failed, err is", err)
                         oh.WriteCplxError(nil, w, r, ErrorPutUser, fmt.Sprintf("update user passwd failed, err is %v", err))
                         return
@@ -218,7 +218,7 @@ func run() int {
                     return
                 }
                 if ua.Action == DeleteAction {
-                    if err := mt.users.delete(ua.Id); err != nil {
+                    if err := mt.users.delete(ua.User.Id); err != nil {
                         ol.E(nil, "delete user failed, err is", err)
                         oh.WriteCplxError(nil, w, r, ErrorPutUser, fmt.Sprintf("delete user failed, err is %v", err))
                         return

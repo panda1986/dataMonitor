@@ -343,10 +343,10 @@ monitorApp.controller('CUser',['$scope', "$location", "$cookies", "$db_nav", "us
         });
 
         modalInstance.result.then(function (newUser) {
-            MDBApi.user_put();
-            // MLabelManager.modify({},{action:"update", id:newLabel.id, value:newLabel.value}, function (res) {
-            //     get_labels();
-            // });
+            MDBApi.user_put({action:"update", user:newUser}, function (res) {
+                $db_utility.log("trace", "更新用户【" + newUser.name + "】密码成功");
+                load();
+            });
         });
     };
 
@@ -371,9 +371,10 @@ monitorApp.controller('CUser',['$scope', "$location", "$cookies", "$db_nav", "us
 
     $scope.deleteUser = function (user) {
         confirm_modal("提示", "确定要删除【" + user.id + "】【" + user.name + "】用户?", function() {
-            // MLabelManager.delete({}, {action:"delete", id:label.id}, function (res) {
-            //     get_labels();
-            // });
+            MDBApi.user_put({action:"delete", user:user}, function (res) {
+                $db_utility.log("trace", "删除用户【" + user.name + "】成功");
+                load();
+            });
         });
     };
 
